@@ -33,6 +33,7 @@ lint countGoodSubarrays(vector<lint>& arr) {
 
     for (int i = 0; i < arr.size(); i++) {
         prefixSum += arr[i];
+        if(prefixSum==(i+1)){cnt++;}
         lint requiredSum = prefixSum - (i + 1);
         if (freq.find(requiredSum) != freq.end()) {
             cnt += freq[requiredSum];
