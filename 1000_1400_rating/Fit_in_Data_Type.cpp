@@ -13,21 +13,22 @@ using namespace std;
 #define lintmin LLONG_MIN
 #define mp(x,y) make_pair(x,y)
 
-bool solvefunction(vector<lint>&arr){
-    set<lint>st;
-    forloop(0,arr.size()){st.insert(arr[i]);}
-    sort(arr.begin(),arr.end());
-    if(arr[0]==arr[1]){return true;}
-    return false;
-    
+
+lint solvefunction(lint range,lint number){
+    if(number==0){
+        return 0;
+    }
+    else{
+        return number%(range+1);
+    }
 }
 
 void solution(int test){
     while(test--){
-        vector<lint>arr;
-        forloop(0,3){lint x;cin >> x;arr.push_back(x);}
-        bool ans=solvefunction(arr);
-        if(ans==true){print("YES")}else{print("NO")}
+        lint range;lint number;
+        cin >> range >> number;
+        lint ans=solvefunction(range,number);
+        print(ans)
     }
 }
 int main(){
