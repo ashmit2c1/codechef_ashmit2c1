@@ -13,21 +13,38 @@ using namespace std;
 #define lintmin LLONG_MIN
 #define mp(x,y) make_pair(x,y)
 
-bool solvefunction(vector<lint>&arr){
-    set<lint>st;
-    forloop(0,arr.size()){st.insert(arr[i]);}
-    sort(arr.begin(),arr.end());
-    if(arr[0]==arr[1]){return true;}
-    return false;
-    
+
+
+lint findSum(lint number){
+    lint ans=0;
+    while(number!=0){
+        ans+=number%10;
+        number=number/10;
+    }
+    return ans;
+}
+
+lint solvefunction(vector<lint>&arr){
+    lint ans=INT_MIN;
+    forloop(0,arr.size()){
+        secondfor(i+1,arr.size()){
+            lint num1 = arr[i];
+            lint num2 = arr[j];
+            lint product = num1*num2;
+            lint sumofProduct = findSum(product);
+            ans=max(ans,sumofProduct);
+        }
+    }
+    return ans;
 }
 
 void solution(int test){
     while(test--){
+        lint n;cin >> n;
         vector<lint>arr;
-        forloop(0,3){lint x;cin >> x;arr.push_back(x);}
-        bool ans=solvefunction(arr);
-        if(ans==true){print("YES")}else{print("NO")}
+        forloop(0,n){lint x;cin >> x;arr.push_back(x);}
+        lint ans=solvefunction(arr);
+        print(ans)
     }
 }
 int main(){
