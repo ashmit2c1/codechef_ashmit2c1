@@ -13,27 +13,36 @@ using namespace std;
 #define lintmin LLONG_MIN
 #define mp(x,y) make_pair(x,y)
 
-lint solvefunction(string s){
-    lint index=-1;
-    forloop(0,s.size()){
-        char character=s[i];
-        if(character=='0'){
-            index=i;
+
+lint solvefunction(vector<lint>&arr,lint d){
+    lint atrisk=0;
+    forloop(0,arr.size()){
+        lint age=arr[i];
+        if(age>=80 || age<=9){
+            atrisk++;
         }
     }
-    if(index==-1){
-        return s.size();
-    }else{
-        return index;
+    lint notatrisk=arr.size()-atrisk;
+    lint day=0;
+    while(atrisk>0){
+        atrisk-=d;
+        day++;
     }
+    while(notatrisk>0){
+        notatrisk-=d;
+        day++;
+    }
+    return day;
 }
 void solution(int test){
     while(test--){
-        lint n;
-        cin >> n;
-        string s;cin >> s;
-        lint ans=solvefunction(s);
-        print(ans);
+        lint n;lint d;
+        cin >> n >> d;
+        vector<lint>arr;
+        forloop(0,n){lint x;cin >> x;arr.push_back(x);}
+        lint ans=solvefunction(arr,d);
+        print(ans)
+
 
     }
 }
