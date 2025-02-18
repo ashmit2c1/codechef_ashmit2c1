@@ -13,32 +13,32 @@ using namespace std;
 #define lintmin LLONG_MIN
 #define mp(x,y) make_pair(x,y)
 
-lint solvefunction(string s){
-    lint index=-1;
-    forloop(0,s.size()){
-        char character=s[i];
-        if(character=='0'){
-            index=i;
-        }
+lint solvefunction(lint a, lint b, lint n) {
+    if (a % b == 0) {
+        return -1;
     }
-    if(index==-1){
-        return s.size();
-    }else{
-        return index;
+    lint ans = n;
+    if (ans % a != 0) {
+        ans = ans + (a - (ans % a));
     }
+    while (ans % b == 0) {
+        ans += a;
+    }
+    return ans;
 }
-void solution(int test){
-    while(test--){
-        lint n;
-        cin >> n;
-        string s;cin >> s;
-        lint ans=solvefunction(s);
-        print(ans);
 
+void solution(int test) {
+    while (test--) {
+        lint a, b, n;
+        cin >> a >> b >> n;
+        lint ans = solvefunction(a, b, n);
+        print(ans);
     }
 }
-int main(){
+
+int main() {
     int test;
     cin >> test;
     solution(test);
+    return 0;
 }

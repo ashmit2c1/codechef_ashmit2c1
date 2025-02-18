@@ -13,27 +13,29 @@ using namespace std;
 #define lintmin LLONG_MIN
 #define mp(x,y) make_pair(x,y)
 
+
 lint solvefunction(string s){
-    lint index=-1;
+    unordered_map<char,int>mp;
+    lint cnt=1;
+    for(char i='a';i<='z';i++){
+        mp[i]=cnt;
+        cnt++;
+    }
+    lint ans=0;
+    sort(s.begin(),s.end());
     forloop(0,s.size()){
         char character=s[i];
-        if(character=='0'){
-            index=i;
-        }
+        lint val = mp[character]*(i+1);
+        ans+=val;
     }
-    if(index==-1){
-        return s.size();
-    }else{
-        return index;
-    }
+    return ans;
 }
 void solution(int test){
     while(test--){
-        lint n;
-        cin >> n;
-        string s;cin >> s;
+        string s;
+        cin >> s;
         lint ans=solvefunction(s);
-        print(ans);
+        print(ans)
 
     }
 }
